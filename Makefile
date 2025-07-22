@@ -9,7 +9,7 @@ prod:
 test:
 	curl "http://localhost:8000/scripts/XML_daily.asp?date_req=$$(date +'%d/%m/%Y')"
 	@echo ""
-	curl "http://localhost:8000/scripts/XML_daily.asp?date_req=01/01/2023&test_id=12345"
+	curl "http://localhost:8000/scripts/XML_daily.asp?date_req=22/07/2025&test_id=12345"
 	@echo ""
 	curl "http://localhost:8000/healthcheck"
 	@echo ""
