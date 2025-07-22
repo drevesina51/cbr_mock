@@ -1,40 +1,90 @@
-# CBR Mock Service
+# CBR Mock API Service
+
+FastAPI mock service for Central Bank of Russia currency rates API
 
 ## Features
-- Mock API for Central Bank of Russia rates
-- Dynamic test data generation
-- Supports parallel e2e testing
 
-## Quick Start
-```bash
-# Install dependencies
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-pip install -r requirements.txt
+- Full mock implementation of CBR API endpoint
+- Dynamic response generation based on request parameters
+- Built-in request logging to SQLite database
+- Automatic Swagger documentation
+- Load testing support
 
-# Run dev server
-make run
+## Installation
 
-# Or production
-make prod
-```
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/cbr_mock.git
+    cd cbr_mock
+    ```
 
-## API Endpoints
-- `GET /scripts/XML_daily.asp` - Main endpoint
-  - Parameters:
-    - `date_req` - Date in DD/MM/YYYY format
-    - `test_id` - Unique test identifier (optional)
-    - `force_error` - Set to true to get 500 error
+2.  Create and activate virtual environment:
+    *   Linux/Mac:
+        ```bash
+        python -m venv venv
+        source venv/bin/activate
+        ```
+    *   Windows:
+        ```powershell
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
 
-- `GET /healthcheck` - Service status
-- `POST /reset-test-state` - Reset test data
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+### Running the server
+*   Development mode with auto-reload:
+    ```bash
+    make run
+    ```
+*   Production mode:
+    ```bash
+    make prod
+    ```
+
+### Endpoints
+- Main endpoint: `GET /scripts/XML_daily.asp?date_req=DD/MM/YYYY`
+- Healthcheck: `GET /healthcheck`
+- Request log: `GET /requests-log`
+- Reset test state: `POST /reset-test-state`
+
+### Examples
+- Successful request:
+    ```bash
+    curl "http://localhost:8000/scripts/XML_daily.asp?date_req=22/07/2025"
+    ```
+- Force error response:
+    ```bash
+    curl "http://localhost:8000/scripts/XML_daily.asp?date_req=22/07/2025&force_error=true"
+    ```
 
 ## Testing
-```bash
-# Single request
-make test
+- Run basic tests:
+    ```bash
+    make test
+    ```
+- Run load testing (requires locust):
+    ```bash
+    make load-test
+    ```
 
-# Load testing (requires locust)
-make load-test
-```
+## Implementation Status
+
+### ✅ Fully Implemented
+- Microservice architecture (FastAPI)
+- Asynchronous interaction
+- Unique data generation per test
+- No hardcoded responses
+- No headers usage
+- Makefile with commands
+- Swagger documentation
+- Database integration (SQLite)
+
+### ⚠️ Not Implemented
+- Proto files (gRPC interface)
+- Golang version
