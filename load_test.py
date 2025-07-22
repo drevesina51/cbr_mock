@@ -8,7 +8,7 @@ class CBRUser(HttpUser):
         test_id = self.client.base_url.split("//")[1].replace(".", "_")
         self.client.get(
             "/scripts/XML_daily.asp",
-            params={"date_req": "01/01/2023", "test_id": test_id}
+            params={"date_req": "22/07/2025", "test_id": test_id}
         )
     
     @task(3)
