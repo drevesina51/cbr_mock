@@ -124,7 +124,7 @@ async def mock_cbr(
     try:
         datetime.strptime(date_req, "%d/%m/%Y")
         
-        # 10% chance of random error если не указан force_error
+        # 10% chance of random error
         if not force_error and random.random() < Config.ERROR_RATE:
             force_error = True
         
